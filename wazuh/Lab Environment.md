@@ -66,3 +66,28 @@ sudo nano /var/lib/docker/volumes/single-node_wazuh_etc/_data/rules/local_rules.
 Save: Ctrl + O, Enter
 Exit: Ctrl + X
 NOTE: I have installed docker for my wazuh installation on kali linux and you can do this on ubuntu also without docker. 
+
+Wazuh Lab Health Check
+Kali Linux
+Check Docker containers
+```bash
+sudo docker ps
+```
+Check Wazuh services
+```bash
+sudo docker exec single-node-wazuh.manager-1 /var/ossec/bin/wazuh-control status
+```
+Check Windows agent connection
+```bash
+sudo docker exec single-node-wazuh.manager-1 /var/ossec/bin/agent_control -l
+```
+Windows 11 (PowerShell – Administrator)
+Check Sysmon and Wazuh Agent
+```powershell
+Get-Service Sysmon64,WazuhSvc
+```
+Verify
+Docker containers: Up
+Wazuh Agent: Active
+Sysmon64: Running
+WazuhSvc: Running
